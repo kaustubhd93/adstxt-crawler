@@ -1,8 +1,9 @@
+import os
 import logging
 import csv
 import time
 
-projectDir = "/tmp"
+projectDir = os.getcwd()
 
 class HelperFunctions():
 
@@ -29,7 +30,7 @@ class HelperFunctions():
     
         logger.handlers = []
 
-    def write_to_csv(self, listInfo, fileName, fieldNames=["BucketName", "BucketSize"], overwrite=False):
+    def write_to_csv(self, listInfo, fileName, fieldNames=["partner","pubid","relation"], overwrite=False):
         timeFormat = time.strftime("%Y-%m-%d-%H-%M")
         if not overwrite:
             csvFileName = projectDir + "/csv/" + fileName + "-" + timeFormat + ".csv"
@@ -41,3 +42,7 @@ class HelperFunctions():
             writer.writeheader()
             for info in listInfo:
                 writer.writerow(info)
+
+    def cal_diff(self,startTime, endTime):
+        diffTime = float((endTime - startTime).microseconds/1000)
+        return diffTime

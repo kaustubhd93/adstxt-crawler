@@ -3,13 +3,17 @@ import sys
 import os
 import urllib2
 import re
-import json
+import datetime
 from helper import HelperFunctions
+
+hlp = HelperFunctions()
 
 class AdsTxt():
 
     def get_ads_txt(self,domain):
-        response = urllib2.urlopen("https://{}/ads.txt".format(domain.strip("\n")))
+        startTime = datetime.datetime.utcnow()
+        hlp.py_logger("Started crawling for domain : " + domain)
+        response = urllib2.urlopen("https://{}/ads.txt".format(domain))
         content = response.readlines()
         inventoryDetails = []
         for line in content:
@@ -33,8 +37,11 @@ class AdsTxt():
                                              "relation" : relation})
                         
                
-        adstxt = {"domain" : domain.strip("\n"),
+        adstxt = {"domain" : domain,
                   "adstxt" : inventoryDetails}
+        hlp.py_logger("Finished crawling for domain : " + domain)
+        endTime = datetime.datetime.utcnow()
+        hlp.py_logger("Time lapsed in crawling : {}".format(hlp.cal_diff(startTime, endTime)))
         return adstxt
 
 if __name__ == "__main__":
@@ -47,9 +54,8 @@ if __name__ == "__main__":
      fObj.close()
 
      ads = AdsTxt()
-     hlp = HelperFunctions()
      
      for domain in domainList:
-         domainAdsTxt = ads.get_ads_txt(domain)
+         domainAdsTxt = ads.get_ads_txt(domain.strip("\n"))
          csvFileName = domainAdsTxt["domain"]
          hlp.write_to_csv(domainAdsTxt["adstxt"],fileName=csvFileName,fieldNames=["partner","pubId","relation"])
