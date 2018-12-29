@@ -13,10 +13,14 @@ class AdsTxt():
     def get_ads_txt(self,domain):
         startTime = datetime.datetime.utcnow()
         hlp.py_logger("Started crawling for domain : " + domain)
-        response = urllib2.urlopen("https://{}/ads.txt".format(domain))
+        try:
+            response = urllib2.urlopen("https://{}/ads.txt".format(domain))
+        except urllib2.HTTPError as e:
+            hlp.py_logger("Domain {} cannot be crawled. Skipping as something went wrong {}".format(domain,str(e)))
+            return None
         contentType = response.headers.getheader('Content-Type')
         if "html" in contentType:
-            hlp.py_logger("Domain {} cannot be crawled. Skipping".format(domain))
+            hlp.py_logger("Domain {} cannot be crawled. Skipping as html content found".format(domain))
             return None
         content = response.readlines()
         inventoryDetails = []
@@ -68,5 +72,5 @@ if __name__ == "__main__":
              hlp.write_to_csv(domainAdsTxt["adstxt"],fileName=csvFileName,fieldNames=["partner","pubId","relation"])
          else:
              unCrawlable.append(domain)
-    if unCrawlable:
+     if unCrawlable:
         hlp.py_logger("List of domains that could not be crawled : {}.".format(unCrawlable))
