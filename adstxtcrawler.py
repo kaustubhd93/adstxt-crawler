@@ -14,7 +14,9 @@ class AdsTxt():
         startTime = datetime.datetime.utcnow()
         hlp.py_logger("Started crawling for domain : " + domain)
         try:
-            response = urllib2.urlopen("https://{}/ads.txt".format(domain))
+            request = urllib2.Request("https://{}/ads.txt".format(domain))
+            request.add_header('User-agent','Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0')
+            response = urllib2.urlopen(request)
         except urllib2.HTTPError as e:
             hlp.py_logger("Domain {} cannot be crawled. Skipping as something went wrong {}".format(domain,str(e)))
             return None
