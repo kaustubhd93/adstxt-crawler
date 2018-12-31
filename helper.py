@@ -46,3 +46,7 @@ class HelperFunctions():
     def cal_diff(self,startTime, endTime):
         diffTime = float((endTime - startTime).microseconds/1000)
         return diffTime
+
+    def split_list_into_chunks(self,dataList,size):
+        for i in range(0,len(dataList),size):
+            yield dataList[i:i+size]

@@ -4,10 +4,14 @@ import os
 import urllib2
 import re
 import datetime
-import multiprocessing
+import copy_reg
+import pickle
+from multiprocessing import Process,Pool,Manager
 from helper import HelperFunctions
 
 hlp = HelperFunctions()
+manager = Manager()
+unCrawlable = manager.list()
 
 class AdsTxt():
 
@@ -53,7 +57,8 @@ class AdsTxt():
         hlp.py_logger("Finished crawling for domain : " + domain)
         endTime = datetime.datetime.utcnow()
         hlp.py_logger("Time lapsed in crawling : {}".format(hlp.cal_diff(startTime, endTime)))
-        return adstxt
+        hlp.write_to_csv(adstxt["adstxt"],fileName=domain,fieldNames=["partner","pubId","relation"])
+        #return adstxt
 
 if __name__ == "__main__":
      # File with list of domains
@@ -66,14 +71,23 @@ if __name__ == "__main__":
 
      ads = AdsTxt()
      domainList = map(lambda x: x.strip("\n"), domainList)
-     unCrawlable = []
+     # Make equal sized chunks of list
+     domainBatch = hlp.split_list_into_chunks(domainList,20)
+     for batch in domainBatch:
+         jobs = []
+         for domainName in batch:
+             worker = Process(target=ads.get_ads_txt, args=(domainName,))
      
-     for domain in domainList:
-         domainAdsTxt = ads.get_ads_txt(domain)
-         if domainAdsTxt:
-             csvFileName = domainAdsTxt["domain"]
-             hlp.write_to_csv(domainAdsTxt["adstxt"],fileName=csvFileName,fieldNames=["partner","pubId","relation"])
-         else:
-             unCrawlable.append(domain)
-     if unCrawlable:
-        hlp.py_logger("List of domains that could not be crawled : {}.".format(unCrawlable))
+     #for domain in domainList:
+     #    domainAdsTxt = ads.get_ads_txt(domain)
+     #    if domainAdsTxt:
+     #        csvFileName = domainAdsTxt["domain"]
+     #        hlp.write_to_csv(domainAdsTxt["adstxt"],fileName=csvFileName,fieldNames=["partner","pubId","relation"])
+     #    else:
+     #        unCrawlable.append(domain)
+     #if unCrawlable:
+     #   hlp.py_logger("List of domains that could not be crawled : {}.".format(unCrawlable))
+     #pool = Pool(processes=20)
+     #pool.apply_async(ads.get_ads_txt(),domainList)
+     
+     
