@@ -1,0 +1,18 @@
+# With batches of 20
+Date and Time: Tue Jan  1 13:09:28 IST 2019
+465 domains in 780 seconds. (Rest of the domains rejected.)
+
+# With a pool of 20
+Date and Time : Tue Jan  1 18:06:08 IST 2019 
+464 domains in 300 seconds (Rest of the domains rejected.)
+
+
+# With a pool of 20 and trying http if ssl verification fails for a domain.
+Date and Time : Tue Jan  1 18:29:31 IST 2019
+603 domains in 420 seconds (Rest of the domains rejected.)
+
+# With a pool of 30 and trying http if ssl verification fails for a domain and writing into json files.
+Date and Time : Tue Jan  1 18:29:31 IST 2019
+600 domains in 310 seconds (Rest of the domains rejected.)
+
+
