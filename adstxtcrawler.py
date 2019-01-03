@@ -12,10 +12,7 @@ hlp = HelperFunctions()
 manager = Manager()
 unCrawlable = manager.list()
 
-#class AdsTxt():
-
-def get_ads_txt(domain):
-    startTime = datetime.datetime.utcnow()
+def get_content(domain):
     hlp.py_logger("Started crawling for domain : " + domain)
     try:
         request = urllib2.Request("https://{}/ads.txt".format(domain))
@@ -47,69 +44,74 @@ def get_ads_txt(domain):
         return None
     try:
         content = response.readlines()
+        return content
     except Exception as e:
         hlp.py_logger("Something went wrong while read operation {} for domain {}".format(str(e),domain))
         return None
-    inventoryDetails = []
-    for line in content:
-        if "ads.txt" not in line.lower():
-            if re.search(r'direct',line.lower(),re.M|re.I):
-                relation = "DIRECT"
-            elif re.search(r'direct\|reseller',line.lower(),re.M|re.I):
-                relation = "DIRECT|RESELLER"
-            elif re.search(r'reseller',line.lower(),re.M|re.I):
-                relation = "RESELLER"
-            else:
-                relation = "undefined"
-            partnerDetails = line.strip("\n\r").split(",")
-            if len(partnerDetails) > 1:
-                if not re.search(r'(direct)|(reseller)',partnerDetails[1].lower(),re.M|re.I):
-                    pubId = partnerDetails[1].strip()
+
+def get_ads_txt(domain):
+    content = get_content(domain)
+    if content:
+        inventoryDetails = []
+        for line in content:
+            if "ads.txt" not in line.lower():
+                if re.search(r'direct',line.lower(),re.M|re.I):
+                    relation = "DIRECT"
+                elif re.search(r'direct\|reseller',line.lower(),re.M|re.I):
+                    relation = "DIRECT|RESELLER"
+                elif re.search(r'reseller',line.lower(),re.M|re.I):
+                    relation = "RESELLER"
                 else:
-                    pubId = None
-                if len(partnerDetails) >= 4:
-                    if "#" in partnerDetails[3]:
-                        tagEle = partnerDetails[3].split("#")
-                        tagId = tagEle[0].strip()
+                    relation = "undefined"
+                partnerDetails = line.strip("\n\r").split(",")
+                if len(partnerDetails) > 1:
+                    if not re.search(r'(direct)|(reseller)',partnerDetails[1].lower(),re.M|re.I):
+                        pubId = partnerDetails[1].strip()
                     else:
-                        tagId = partnerDetails[3].strip()
-                else:
-                    tagId = None
-                inventoryDetails.append({"partner": partnerDetails[0],
-                                         "pubId" : pubId,
-                                         "relation" : relation,
-                                         "tagId" : tagId})
-                    
-           
-    adstxt = {"domain" : domain,
-              "adstxt" : inventoryDetails}
-    hlp.py_logger("Finished crawling for domain : " + domain)
-    endTime = datetime.datetime.utcnow()
-    hlp.py_logger("Time lapsed in crawling : {}".format(hlp.cal_diff(startTime, endTime)))
-    #fObj = open("json/crawledDomains.json","a+")
-    #try:
-    #    fObj.write(json.dumps(adstxt)+"\n")
-    #except Exception as e:
-    #    hlp.py_logger("Somthing went wrong while json encoding for domain {} - {}.".format(domain,str(e)))
-    #    return None
-    #fObj.close()
-    hlp.write_to_csv(adstxt["adstxt"],fileName=domain,fieldNames=["partner","pubId","relation","tagId"])
-    #return adstxt
+                        pubId = None
+                    if len(partnerDetails) >= 4:
+                        if "#" in partnerDetails[3]:
+                            tagEle = partnerDetails[3].split("#")
+                            tagId = tagEle[0].strip()
+                        else:
+                            tagId = partnerDetails[3].strip()
+                    else:
+                        tagId = None
+                    inventoryDetails.append({"partner": partnerDetails[0],
+                                             "pubId" : pubId,
+                                             "relation" : relation,
+                                             "tagId" : tagId})
+                        
+               
+        adstxt = {"domain" : domain,
+                  "adstxt" : inventoryDetails}
+        hlp.py_logger("Finished crawling for domain : " + domain)
+        #endTime = datetime.datetime.utcnow()
+        #hlp.py_logger("Time lapsed in crawling : {}".format(hlp.cal_diff(startTime, endTime)))
+        #fObj = open("json/crawledDomains.json","a+")
+        #try:
+        #    fObj.write(json.dumps(adstxt)+"\n")
+        #except Exception as e:
+        #    hlp.py_logger("Somthing went wrong while json encoding for domain {} - {}.".format(domain,str(e)))
+        #    return None
+        #fObj.close()
+        hlp.write_to_csv(adstxt["adstxt"],fileName=domain,fieldNames=["partner","pubId","relation","tagId"])
+        #return adstxt
 
 if __name__ == "__main__":
-     # File with list of domains
-     domainFileName = sys.argv[1]
-     
-     # Take all domains.
-     fObj = open(domainFileName, "r+")
-     domainList = fObj.readlines()
-     fObj.close()
+    # File with list of domains
+    domainFileName = sys.argv[1]
+    
+    # Take all domains.
+    fObj = open(domainFileName, "r+")
+    domainList = fObj.readlines()
+    fObj.close()
 
-     #ads = AdsTxt()
-     domainList = map(lambda x: x.strip("\n"), domainList)
-     #for domain in domainList:
-     #    get_ads_txt(domain)
-     pool = Pool(processes=30)
-     pool.map(get_ads_txt, domainList)
-     hlp.py_logger("List of domains that could not be crawled : {}.".format(unCrawlable))
+    #ads = AdsTxt()
+    domainList = map(lambda x: x.strip("\n"), domainList)
+    #for domain in domainList:
+    #    get_ads_txt(domain)
+    pool = Pool(processes=30)
+    pool.map(get_ads_txt, domainList)
+    hlp.py_logger("List of domains that could not be crawled : {}.".format(unCrawlable))
      
