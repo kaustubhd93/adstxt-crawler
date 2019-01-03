@@ -67,9 +67,18 @@ def get_ads_txt(domain):
                     pubId = partnerDetails[1].strip()
                 else:
                     pubId = None
+                if len(partnerDetails) >= 4:
+                    if "#" in partnerDetails[3]:
+                        tagEle = partnerDetails[3].split("#")
+                        tagId = tagEle[0].strip()
+                    else:
+                        tagId = partnerDetails[3].strip()
+                else:
+                    tagId = None
                 inventoryDetails.append({"partner": partnerDetails[0],
                                          "pubId" : pubId,
-                                         "relation" : relation})
+                                         "relation" : relation,
+                                         "tagId" : tagId})
                     
            
     adstxt = {"domain" : domain,
@@ -77,14 +86,14 @@ def get_ads_txt(domain):
     hlp.py_logger("Finished crawling for domain : " + domain)
     endTime = datetime.datetime.utcnow()
     hlp.py_logger("Time lapsed in crawling : {}".format(hlp.cal_diff(startTime, endTime)))
-    fObj = open("json/crawledDomains.json","a+")
-    try:
-        fObj.write(json.dumps(adstxt)+"\n")
-    except Exception as e:
-        hlp.py_logger("Somthing went wrong while json encoding for domain {} - {}.".format(domain,str(e)))
-        return None
-    fObj.close()
-    #hlp.write_to_csv(adstxt["adstxt"],fileName=domain,fieldNames=["partner","pubId","relation"])
+    #fObj = open("json/crawledDomains.json","a+")
+    #try:
+    #    fObj.write(json.dumps(adstxt)+"\n")
+    #except Exception as e:
+    #    hlp.py_logger("Somthing went wrong while json encoding for domain {} - {}.".format(domain,str(e)))
+    #    return None
+    #fObj.close()
+    hlp.write_to_csv(adstxt["adstxt"],fileName=domain,fieldNames=["partner","pubId","relation","tagId"])
     #return adstxt
 
 if __name__ == "__main__":
