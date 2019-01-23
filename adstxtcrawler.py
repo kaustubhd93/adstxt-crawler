@@ -6,6 +6,7 @@ import re
 import datetime
 import json
 from multiprocessing import Process,Pool,Manager
+from collections import Counter
 from helper import HelperFunctions
 
 hlp = HelperFunctions()
@@ -49,6 +50,9 @@ def get_content(domain):
         hlp.py_logger("Something went wrong while read operation {} for domain {}".format(str(e),domain))
         return None
 
+#def refactor_ds(inventory):
+    
+
 def get_ads_txt(domain):
     content = get_content(domain)
     if content:
@@ -77,14 +81,19 @@ def get_ads_txt(domain):
                             tagId = partnerDetails[3].strip()
                     else:
                         tagId = None
-                    inventoryDetails.append({"partner": partnerDetails[0],
-                                             "pubId" : pubId,
-                                             "relation" : relation,
-                                             "tagId" : tagId})
+                    #inventoryDetails.append({"partner": partnerDetails[0],
+                    #                         "pubId" : pubId,
+                    #                         "relation" : relation,
+                    #                         "tagId" : tagId})
+                    inventoryDetails.append({"partner" : partnerDetails[0],
+                                             "partnerDetails" : {"pubId" : pubId,
+                                                                 "relation" : relation,
+                                                                 "tagId" : tagId}})
                         
                
         adstxt = {"domain" : domain,
                   "adstxt" : inventoryDetails}
+        print adstxt
         hlp.py_logger("Finished crawling for domain : " + domain)
         #endTime = datetime.datetime.utcnow()
         #hlp.py_logger("Time lapsed in crawling : {}".format(hlp.cal_diff(startTime, endTime)))
@@ -95,7 +104,7 @@ def get_ads_txt(domain):
         #    hlp.py_logger("Somthing went wrong while json encoding for domain {} - {}.".format(domain,str(e)))
         #    return None
         #fObj.close()
-        hlp.write_to_csv(adstxt["adstxt"],fileName=domain,fieldNames=["partner","pubId","relation","tagId"])
+        #hlp.write_to_csv(adstxt["adstxt"],fileName=domain,fieldNames=["partner","pubId","relation","tagId"])
         #return adstxt
 
 if __name__ == "__main__":
