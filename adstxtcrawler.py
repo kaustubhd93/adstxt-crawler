@@ -6,7 +6,7 @@ import re
 import datetime
 import json
 from multiprocessing import Process,Pool,Manager
-from collections import Counter
+from functools import partial
 from helper import HelperFunctions
 
 hlp = HelperFunctions()
@@ -50,13 +50,23 @@ def get_content(domain):
         hlp.py_logger("Something went wrong while read operation {} for domain {}".format(str(e),domain))
         return None
 
-#def refactor_ds(inventory):
-    
+def refactor_ds(inventoryDetails, partnerDomains):
+    sortedDetails = []
+    for domain in partnerDomains:
+        partnerDomainDetails = []
+        for ele in inventoryDetails:
+            if ele["partner"] == domain:
+                partnerDomainDetails.append(ele["partnerDetails"])
+        sortedDetails.append({"partner" : domain,
+                              "partnerDetails" : partnerDomainDetails})
+    return sortedDetails
 
-def get_ads_txt(domain):
+def get_ads_txt(domain, csvFlag):
     content = get_content(domain)
+    partnerDomains = []
     if content:
         inventoryDetails = []
+        csvinventoryDetails = []
         for line in content:
             if "ads.txt" not in line.lower():
                 if re.search(r'direct',line.lower(),re.M|re.I):
@@ -81,35 +91,39 @@ def get_ads_txt(domain):
                             tagId = partnerDetails[3].strip()
                     else:
                         tagId = None
-                    #inventoryDetails.append({"partner": partnerDetails[0],
-                    #                         "pubId" : pubId,
-                    #                         "relation" : relation,
-                    #                         "tagId" : tagId})
-                    inventoryDetails.append({"partner" : partnerDetails[0],
-                                             "partnerDetails" : {"pubId" : pubId,
-                                                                 "relation" : relation,
-                                                                 "tagId" : tagId}})
-                        
-               
-        adstxt = {"domain" : domain,
-                  "adstxt" : inventoryDetails}
-        print adstxt
+                    if csvFlag:
+                        csvinventoryDetails.append({"partner": partnerDetails[0],
+                                                 "pubId" : pubId,
+                                                 "relation" : relation,
+                                                 "tagId" : tagId})
+                    else:
+                        inventoryDetails.append({"partner" : partnerDetails[0].lower(),
+                                                 "partnerDetails" : {"pubId" : pubId,
+                                                                     "relation" : relation,
+                                                                     "tagId" : tagId}})
+                        partnerDomains.append(partnerDetails[0].lower())
+        
+        if csvFlag:
+            adstxt = {"domain" : domain,
+                      "adstxt" : csvinventoryDetails}
+            hlp.write_to_csv(adstxt["adstxt"],fileName=domain,fieldNames=["partner","pubId","relation","tagId"])
+        else:
+            partnerDomains = list(set(partnerDomains))
+            sortedDetails = refactor_ds(inventoryDetails,partnerDomains)
+            adstxt = {"domain" : domain,
+                      "partnerDomains" : partnerDomains,
+                      "adstxt" : sortedDetails}
+            print adstxt
         hlp.py_logger("Finished crawling for domain : " + domain)
-        #endTime = datetime.datetime.utcnow()
-        #hlp.py_logger("Time lapsed in crawling : {}".format(hlp.cal_diff(startTime, endTime)))
-        #fObj = open("json/crawledDomains.json","a+")
-        #try:
-        #    fObj.write(json.dumps(adstxt)+"\n")
-        #except Exception as e:
-        #    hlp.py_logger("Somthing went wrong while json encoding for domain {} - {}.".format(domain,str(e)))
-        #    return None
-        #fObj.close()
-        #hlp.write_to_csv(adstxt["adstxt"],fileName=domain,fieldNames=["partner","pubId","relation","tagId"])
-        #return adstxt
 
 if __name__ == "__main__":
     # File with list of domains
     domainFileName = sys.argv[1]
+    csvOption = sys.argv[2]
+    if csvOption.lower() == "csv":
+        csvFlag = True
+    else:
+        csvFlag = False
     
     # Take all domains.
     fObj = open(domainFileName, "r+")
@@ -121,6 +135,7 @@ if __name__ == "__main__":
     #for domain in domainList:
     #    get_ads_txt(domain)
     pool = Pool(processes=30)
-    pool.map(get_ads_txt, domainList)
+    #pool.map(get_ads_txt, domainList, csvFlag)
+    pool.map(partial(get_ads_txt,csvFlag=csvFlag),domainList)
     hlp.py_logger("List of domains that could not be crawled : {}.".format(unCrawlable))
      
