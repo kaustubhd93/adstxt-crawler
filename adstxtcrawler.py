@@ -9,9 +9,12 @@ from multiprocessing import Process,Pool,Manager
 from functools import partial
 from helper import HelperFunctions
 
+from redis import Redis
+
 hlp = HelperFunctions()
 manager = Manager()
 unCrawlable = manager.list()
+conn = Redis("localhost")
 
 def get_content(domain):
     hlp.py_logger("Started crawling for domain : " + domain)
@@ -113,7 +116,12 @@ def get_ads_txt(domain, csvFlag):
             adstxt = {"domain" : domain,
                       "partnerDomains" : partnerDomains,
                       "adstxt" : sortedDetails}
-            print adstxt
+            #print adstxt
+            print "Dumping inside redis"
+            print datetime.datetime.utcnow()
+            conn.hmset(name = "domains:{}".format(adstxt["domain"]), mapping = {"partnerDomains" : json.dumps(adstxt["partnerDomains"]), "adstxt" : json.dumps(adstxt["adstxt"])})
+            print datetime.datetime.utcnow()
+            print "Done dumping"
         hlp.py_logger("Finished crawling for domain : " + domain)
 
 if __name__ == "__main__":
