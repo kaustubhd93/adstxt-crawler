@@ -1,4 +1,6 @@
 # WIP
+# Structure is flattened as we cannot use a class object inside multiprocessing pool.
+# It is not able to serialize the object created when oop approach is used.
 import sys
 import os
 import urllib2
@@ -105,7 +107,7 @@ def get_ads_txt(domain, csvFlag):
                                                                      "relation" : relation,
                                                                      "tagId" : tagId}})
                         partnerDomains.append(partnerDetails[0].lower())
-        
+
         if csvFlag:
             adstxt = {"domain" : domain,
                       "adstxt" : csvinventoryDetails}
@@ -132,7 +134,7 @@ if __name__ == "__main__":
         csvFlag = True
     else:
         csvFlag = False
-    
+
     # Take all domains.
     fObj = open(domainFileName, "r+")
     domainList = fObj.readlines()
@@ -146,4 +148,3 @@ if __name__ == "__main__":
     #pool.map(get_ads_txt, domainList, csvFlag)
     pool.map(partial(get_ads_txt,csvFlag=csvFlag),domainList)
     hlp.py_logger("List of domains that could not be crawled : {}.".format(unCrawlable))
-     
