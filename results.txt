@@ -24,3 +24,9 @@ Date and Time : Sat May  4 17:01:52 IST 2019
 # Parsing and refactoring logic not integrated yet.
 Date and Time : Sat May  4 17:28:17 IST 2019
 635/797 domains in 369 seconds (Rest of the domains rejected.)
+
+# With CONCURRENT_REQUESTS = 32,  with scrapy, with retries disabled
+# and DOWNLOAD_TIMEOUT set to 10 seconds; parsing and refactoring logic
+# not integrated yet.
+Date and Time : Sat May  4 17:28:17 IST 2019
+636/797 domains in 138 seconds (Rest of the domains rejected.)

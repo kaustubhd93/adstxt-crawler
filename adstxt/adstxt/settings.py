@@ -91,3 +91,4 @@ CONCURRENT_REQUESTS = 32
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 RETRY_ENABLED = False
 LOG_LEVEL = 'INFO'
+DOWNLOAD_TIMEOUT = 10
