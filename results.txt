@@ -3,7 +3,7 @@ Date and Time: Tue Jan  1 13:09:28 IST 2019
 465 domains in 780 seconds. (Rest of the domains rejected.)
 
 # With a pool of 20
-Date and Time : Tue Jan  1 18:06:08 IST 2019 
+Date and Time : Tue Jan  1 18:06:08 IST 2019
 464 domains in 300 seconds (Rest of the domains rejected.)
 
 
@@ -15,4 +15,12 @@ Date and Time : Tue Jan  1 18:29:31 IST 2019
 Date and Time : Tue Jan  1 18:29:31 IST 2019
 600 domains in 310 seconds (Rest of the domains rejected.)
 
+# With CONCURRENT_REQUESTS = 16, default setting with scrapy, with retries disabled
+# Parsing and refactoring logic not integrated yet.
+Date and Time : Sat May  4 17:01:52 IST 2019
+637/797 domains in 447 seconds (Rest of the domains rejected.)
 
+# With CONCURRENT_REQUESTS = 32,  with scrapy, with retries disabled
+# Parsing and refactoring logic not integrated yet.
+Date and Time : Sat May  4 17:28:17 IST 2019
+635/797 domains in 369 seconds (Rest of the domains rejected.)
