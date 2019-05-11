@@ -66,8 +66,12 @@ def refactor_ds(inventoryDetails, partnerDomains):
                               "partnerDetails" : partnerDomainDetails})
     return sortedDetails
 
-def get_ads_txt(domain, csvFlag):
-    content = get_content(domain)
+# def get_ads_txt(domain, csvFlag):
+#     content = get_content(domain)
+def get_ads_txt(domain, data, csvFlag):
+    #print type(data)
+    #print data
+    content = data.splitlines()
     partnerDomains = []
     if content:
         inventoryDetails = []

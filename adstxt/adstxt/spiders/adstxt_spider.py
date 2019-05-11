@@ -1,5 +1,7 @@
+import sys
 import scrapy
-
+sys.path.append('../')
+from adstxtcrawler import get_ads_txt
 
 class AdstxtSpider(scrapy.Spider):
     name = "adstxt"
@@ -13,8 +15,11 @@ class AdstxtSpider(scrapy.Spider):
             yield scrapy.Request(url="http://{}/ads.txt".format(domain), callback=self.parse)
 
     def parse(self, response):
-        page = response.url.split("/")[-2]
-        filename = 'adstxt-%s.txt' % page
-        with open(filename, 'wb') as f:
-            f.write(response.body)
-        self.log('Saved file %s' % filename)
+        #print dir(response)
+        domain = response.url.split("/")[-2]
+        # filename = 'adstxt-%s.txt' % page
+        # with open(filename, 'wb') as f:
+        #     f.write(response.body)
+        # self.log('Saved file %s' % filename)
+        get_ads_txt(domain, response.body, True)
+        self.log('Saved file *********************************************')
