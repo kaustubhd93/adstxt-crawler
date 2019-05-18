@@ -18,6 +18,8 @@ manager = Manager()
 unCrawlable = manager.list()
 conn = Redis("localhost")
 
+# Below function is not being used currently as downloading content from urls
+# has been migrated to scrapy.
 def get_content(domain):
     hlp.py_logger("Started crawling for domain : " + domain)
     try:

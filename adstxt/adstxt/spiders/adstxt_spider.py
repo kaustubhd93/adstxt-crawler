@@ -3,11 +3,14 @@ import scrapy
 sys.path.append('../')
 from adstxtcrawler import get_ads_txt
 
+domainDetails = sys.argv[1]
+
 class AdstxtSpider(scrapy.Spider):
     name = "adstxt"
 
     def start_requests(self):
-        fObj = open("/home/kaustubh/Workspace/adstxt-crawler/sample", "r+")
+        #fObj = open("/home/kaustubh/Workspace/adstxt-crawler/sample", "r+")
+        fObj = open(self.domainDetails, "r+")
         domainList = fObj.readlines()
         fObj.close()
         domainList = map(lambda x: x.strip("\n"), domainList)
