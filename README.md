@@ -14,9 +14,9 @@ ads.txt crawler for transparency of inventory for publishers and advertisers
 
 # Usage
 NOTE: List of domains should be written separately each on a new line.
-domain1.xyz
-domain2.xyz
-www.domain3.xyz
+domain1.xyz  
+domain2.xyz  
+www.domain3.xyz  
 
 - `./crawl.sh /path/to/listofdomainfile`
 
