@@ -5,7 +5,6 @@ cffi==1.12.3
 constantly==15.1.0
 cryptography==2.6.1
 cssselect==1.0.3
-Django==1.11.20
 enum34==1.1.6
 functools32==3.2.3.post2
 hyperlink==19.0.0
