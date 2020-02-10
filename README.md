@@ -1,6 +1,6 @@
 # adstxt-crawler
 ads.txt crawler for transparency of inventory for publishers and advertisers.  
-[Know more](#https://github.com/kaustubhd93/adstxt-crawler/wiki/Ads.txt-concepts)
+[Know more](https://github.com/kaustubhd93/adstxt-crawler/wiki/Ads.txt-concepts)  
 
 # Installation for Ubuntu/Debian
 
