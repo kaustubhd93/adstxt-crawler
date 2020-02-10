@@ -15,5 +15,5 @@ class AdstxtSpider(scrapy.Spider):
 
     def parse(self, response):
         domain = response.url.split("/")[-2]
-        adstxtcrawler.get_ads_txt(domain, response.body, True)
+        adstxtcrawler.get_ads_txt(domain, response.body)
         self.log('Saved file *********************************************')

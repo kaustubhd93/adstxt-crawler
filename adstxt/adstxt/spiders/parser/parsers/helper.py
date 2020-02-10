@@ -36,7 +36,6 @@ class HelperFunctions():
             csvFileName = projectDir + "/csv/" + fileName + "-" + timeFormat + ".csv"
         else:
             csvFileName = projectDir + "/csv/" + fileName + ".csv"
-        #with open(projectDir + "/csv/" + fileName + timeFormat + ".csv", "w") as fileData:
         with open(csvFileName, "w") as fileData:
             writer = csv.DictWriter(fileData, fieldnames=fieldNames)
             writer.writeheader()
