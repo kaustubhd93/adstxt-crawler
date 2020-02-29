@@ -1,6 +1,6 @@
 # WIP
 import re
-from helper import HelperFunctions
+from .helper import HelperFunctions
 
 hlp = HelperFunctions()
 
