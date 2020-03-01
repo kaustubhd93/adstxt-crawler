@@ -6,7 +6,19 @@ from .helper import HelperFunctions
 hlp = HelperFunctions()
 
 def get_ads_txt(domain, data):
+    #print("*******************start_section*************************")
+    #print(data)
+    #print("*********************************************************")
+    try:
+        data = data.decode("utf-8", "ignore")
+    except UnicodeDecodeError:
+        print("UnicodeDecodeError on {}".format(domain))
+        return None
+    #print(data)
+    #print("*********************************************************")
     content = data.splitlines()
+    #print(content)
+    #print("*******************end_section***************************")
     if content:
         inventoryDetails = []
         csvinventoryDetails = []
@@ -14,7 +26,7 @@ def get_ads_txt(domain, data):
             # Python 3 change
             # The string in each item list is binary.
             # Using decode converts it to str
-            line = line.decode()
+            #line = line.decode()
             if "ads.txt" not in line.lower():
                 if re.search(r'direct',line.lower(),re.M|re.I):
                     relation = "DIRECT"
