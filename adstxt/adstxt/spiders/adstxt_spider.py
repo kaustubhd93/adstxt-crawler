@@ -1,12 +1,12 @@
 import sys
 import scrapy
 
-from scrapy import signals
+#from scrapy import signals
 from multiprocessing import Manager
 # Importing parsing logic and helper functions.
-# NOTE: There is a in built package "parser" that is shipped in Python 3.
+# NOTE: There is a in built package "parser" that is shipped by default in Python 3.
+# Python 3 change
 from .adstxtparser.parsers import adstxtcrawler
-#from .adstxtparser import parsers
 
 manager = Manager()
 failedDomains = manager.list()
@@ -26,8 +26,10 @@ class AdstxtSpider(scrapy.Spider):
 
     def parse(self, response):
         domain = response.url.split("/")[-2]
+        print("*******************from spider")
+        print (type(response.body))
+        print (dir(response.body))
         adstxtcrawler.get_ads_txt(domain, response.body)
-        #parsers.adstxtcrawler.get_ads_txt(domain, response.body)
         self.logger.debug("Saved file for domain {}".format(domain))
 
     def http_error(self, failure):

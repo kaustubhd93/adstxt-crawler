@@ -1,5 +1,6 @@
-# WIP
+import json
 import re
+# Python 3 change
 from .helper import HelperFunctions
 
 hlp = HelperFunctions()
@@ -10,6 +11,10 @@ def get_ads_txt(domain, data):
         inventoryDetails = []
         csvinventoryDetails = []
         for line in content:
+            # Python 3 change
+            # The string in each item list is binary.
+            # Using decode converts it to str
+            line = line.decode()
             if "ads.txt" not in line.lower():
                 if re.search(r'direct',line.lower(),re.M|re.I):
                     relation = "DIRECT"
