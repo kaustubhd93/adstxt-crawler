@@ -1,7 +1,6 @@
 import sys
 import scrapy
 
-#from scrapy import signals
 from multiprocessing import Manager
 # Importing parsing logic and helper functions.
 # NOTE: There is a in built package "parser" that is shipped by default in Python 3.
@@ -35,7 +34,7 @@ class AdstxtSpider(scrapy.Spider):
     def http_error(self, failure):
         self.logger.error(repr(failure))
         failedDomainUrl = failure.request.url
-        print("Could not scrape : {}".format(failedDomainUrl))
+        #print("Could not scrape : {}".format(failedDomainUrl))
         failedDomains.append(failedDomainUrl.split("/")[-2])
 
     def closed(self, reason):
