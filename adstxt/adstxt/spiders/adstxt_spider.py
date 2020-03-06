@@ -1,7 +1,6 @@
 import sys
 import scrapy
 
-from scrapy import signals
 from multiprocessing import Manager
 from parser.parsers import adstxtcrawler
 
@@ -29,13 +28,14 @@ class AdstxtSpider(scrapy.Spider):
     def http_error(self, failure):
         self.logger.error(repr(failure))
         failedDomainUrl = failure.request.url
-        print("Could not scrape : {}".format(failure.request.url))
+        #print("Could not scrape : {}".format(failedDomainUrl))
         failedDomains.append(failedDomainUrl.split("/")[-2])
 
     def closed(self, reason):
         # This part is provisional as later on when the UI is built on top of this,
         # The list can be stored in Redis or a sql database.
         if failedDomains:
-            print("\nList of domains that could not be scraped : {}\n".format(failedDomains))
+            print("\n{} domains that could not be scraped : {}\n".format(len(failedDomains),failedDomains))
+            self.logger.debug("\n{} domains were scraped : {}\n".format(len(adstxtcrawler.crawledDomains),adstxtcrawler.crawledDomains))
         else:
             return None
