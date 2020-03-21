@@ -25,16 +25,12 @@ class AdstxtSpider(scrapy.Spider):
 
     def parse(self, response):
         domain = response.url.split("/")[-2]
-        # print("*******************from spider")
-        # print (type(response.body))
-        # print (dir(response.body))
         adstxtcrawler.get_ads_txt(domain, response.body)
         self.logger.debug("Saved file for domain {}".format(domain))
 
     def http_error(self, failure):
         self.logger.error(repr(failure))
         failedDomainUrl = failure.request.url
-        #print("Could not scrape : {}".format(failedDomainUrl))
         failedDomains.append(failedDomainUrl.split("/")[-2])
 
     def closed(self, reason):
@@ -42,5 +38,6 @@ class AdstxtSpider(scrapy.Spider):
         # The list can be stored in Redis or a sql database.
         if failedDomains:
             print("\n{} domains could not be scraped : {}\n".format(len(failedDomains),failedDomains))
+            self.logger.debug("\n{} domains were scraped : {}\n".format(len(adstxtcrawler.crawledDomains),adstxtcrawler.crawledDomains))
         else:
             return None

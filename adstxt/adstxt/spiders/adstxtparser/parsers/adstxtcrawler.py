@@ -1,9 +1,13 @@
 import json
 import re
+
+from multiprocessing import Manager
 # Python 3 change
 from .helper import HelperFunctions
 
+manager = Manager()
 hlp = HelperFunctions()
+crawledDomains = manager.list()
 
 def get_ads_txt(domain, data):
     # Python 3 change
@@ -50,3 +54,4 @@ def get_ads_txt(domain, data):
         adstxt = {"domain" : domain,
                 "adstxt" : csvinventoryDetails}
         hlp.write_to_csv(adstxt["adstxt"],fileName=domain,fieldNames=["partner","pubId","relation","tagId"])
+        crawledDomains.append(domain)

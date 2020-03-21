@@ -1,0 +1,152 @@
+http://lyricsondemand.com/ads.txt
+http://www.footballtransfertavern.com/ads.txt
+http://chiasenhac.vn/ads.txt
+http://compfight.com/ads.txt
+http://cryptopotato.com/ads.txt
+http://huaren.us/ads.txt
+http://ahtribune.com/ads.txt
+http://anssa.it/ads.txt
+http://lawsisto.com/ads.txt
+http://www.coinshover.com/404.html
+http://rioja2.com/ads.txt
+http://myeducationdiscount.com/ads.txt
+http://diariojaen.nom.es/ads.txt
+http://predskolaci.cz/ads.txt
+http://politicalocal.es/ads.txt
+http://jaenmotor.es/ads.txt
+http://absolutcantabria.com/ads.txt
+http://absolutsantiago.com/ads.txt
+http://neuflaprovence-immo.com/ads.txt
+http://tabletsbaratasya.com/ads.txt
+http://leon/ads.txt
+http://rossendalefreepress.co.uk/ads.txt
+http://hinckleytimes.net/ads.txt
+http://camara360grados.com/ads.txt
+http://southportvisiter.co.uk/ads.txt
+http://smartphones-baratos.com/ads.txt
+http://citizeneconomists.com/ads.txt
+http://www.staffordshire-live.co.uk/ads.txt
+http://merida/ads.txt
+http://www.cram.com/ads.txt
+http://noticiasdelarioja.com/ads.txt
+http://www.tv-en-direct.fr/ads.txt
+http://viewlorium.com/ads.txt
+http://prosportsdaily.com/ads.txt
+http://lorealdeguerrero.com/ads.txt
+http://vivirhogar.republica.com/ads.txt
+http://ely-news.co.uk/ads.txt
+http://flamingtext.fr/ads.txt
+http://news.rediff.com/ads.txt
+http://leiajape.com.br/ads.txt
+http://malostranskadrbna.cz/ads.txt
+http://icnewcastle.co.uk/ads.txt
+http://urbanian.mundodeportivo.com/ads.txt
+http://buy.motorious.com/ads.txt
+http://tamesideadvertiser.co.uk/ads.txt
+http://m.newson6.com/ads.txt
+http://m.huaren4us.com/ads.txt
+http://m.ilgiornaledivicenza.it/ads.txt
+http://portland-or.americanlisted.com/ads.txt
+http://lovepankycdn.confettimediapri.netdna-cdn.com/ads.txt
+http://junglam.com/ads.txt
+http://m.money.pl/ads.txt
+http://animemanga.popcorntv.it/ads.txt
+http://thekingdominsider.com/ads.txt
+http://wallstreetpit.com/ads.txt
+http://es-file-explorer.en.uptodown.com/ads.txt
+http://cars-fast-as-lightning.en.uptodown.com/ads.txt
+http://google-earth-pro.en.uptodown.com/ads.txt
+http://www.bollywoodbubble.com/ads.txt
+http://my-talking-tom.en.uptodown.com/ads.txt
+http://advertiser-democrat/ads.txt
+http://instagram.uptodown.com/ads.txt
+http://imediaaudiences.com/ads.txt
+http://sport.se.pl/ads.txt
+http://www.benzinga.com/ads.txt
+http://www.mundogamers.com/ads.txt
+http://www.inextlive.com/ads.txt
+http://www.lincolnshirelive.co.uk/ads.txt
+http://www.silverdoctors.com/ads.txt
+http://criticalhit.net/ads.txt
+http://www.listal.com/ads.txt
+http://www.rock-on.ro/ads.txt
+http://www.ilcuoreinpentola.it/ads.txt
+http://www.worldometers.info/ads.txt
+http://www.f4wonline.com/ads.txt
+http://optionstrategist.com/ads.txt
+http://e00-marca.uecdn.es/ads.txt
+http://www.thenewsminute.com/ads.txt
+http://www.malaysia-chronicle.com/ads.txt
+http://gatrixx.com/ads.txt
+http://www.arabalears.cat/ads.txt
+http://electronicshub.org/ads.txt
+http://vector4free.com/ads.txt
+http://www.notigatos.es/ads.txt
+http://www.ara.ad/ads.txt
+http://www.setasgourmet.es/ads.txt
+http://www.absolutviajes.com/ads.txt
+http://www.fertilitysmarts.com/ads.txt
+http://tc02.tellychakkar.com/ads.txt
+http://www.larena.it/ads.txt
+http://meduza.io/ads.txt
+http://punjab.news18.com/ads.txt
+http://www4.mrfood.com/ads.txt
+http://lb.realclearpolitics.com/ads.txt
+http://herozero.rtl2.de/ads.txt
+http://pubblicaamministrazione.net/ads.txt
+http://sundaymail.com/ads.txt
+http://bangaloreadventurerace.com/ads.txt
+http://abcrakpiersi.pl/ads.txt
+http://tridententerprises.co.in/ads.txt
+http://www.aapkisaheli.com/ads.txt
+http://vijayexportsonline.com/ads.txt
+http://safety.org.in/ads.txt
+http://stat1.hungama.ind.in/ads.txt
+http://csdemo.in/ads.txt
+http://abcalkoholizm.pl/ads.txt
+
+
+
+www.wforum.com
+www.f4wonline.com
+optionstrategist.com
+www.washingtontimes.com
+www.ikeahackers.net
+www.palmbaydaily.com
+gatrixx.com
+www.indiatv.in
+www.allaguida.it
+www.sportslogos.net
+www.shawmedia.com
+collegedunia.com
+samosia.pl
+heartbeat.heartlandtv.com
+www.zakruta.cz
+
+
+
+
+
+9 domains could not be scraped : ['www.allaguida.it', 'optionstrategist.com', 'www.f4wonline.com', 'gatrixx.com', 'www.washingtontimes.com', 'www.ikeahackers.net', 'www.palmbaydaily.com', 'heartbeat.heartlandtv.com', 'www.zakruta.cz']
+
+# Error logs 
+
+2020-03-21 18:51:00 [adstxt] ERROR: <twisted.python.failure.Failure scrapy.spidermiddlewares.httperror.HttpError: Ignoring non-200 response>
+2020-03-21 18:51:31 [adstxt] ERROR: <twisted.python.failure.Failure twisted.internet.error.DNSLookupError: DNS lookup failed: no results for hostname lookup: advertiser-democrat.>
+2020-03-21 18:51:44 [adstxt] ERROR: <twisted.python.failure.Failure scrapy.spidermiddlewares.httperror.HttpError: Ignoring non-200 response>
+2020-03-21 18:51:59 [adstxt] ERROR: <twisted.python.failure.Failure twisted.web._newclient.ResponseNeverReceived: [<twisted.python.failure.Failure twisted.internet.error.ConnectionDone: Connection was closed cleanly.>]>
+2020-03-21 18:51:59 [adstxt] ERROR: <twisted.python.failure.Failure twisted.web._newclient.ResponseNeverReceived: [<twisted.python.failure.Failure twisted.internet.error.ConnectionDone: Connection was closed cleanly.>]>
+2020-03-21 18:51:59 [adstxt] ERROR: <twisted.python.failure.Failure twisted.web._newclient.ResponseNeverReceived: [<twisted.python.failure.Failure twisted.internet.error.ConnectionDone: Connection was closed cleanly.>]>
+2020-03-21 18:51:59 [adstxt] ERROR: <twisted.python.failure.Failure twisted.web._newclient.ResponseNeverReceived: [<twisted.python.failure.Failure twisted.internet.error.ConnectionDone: Connection was closed cleanly.>]>
+2020-03-21 18:51:59 [adstxt] ERROR: <twisted.python.failure.Failure twisted.web._newclient.ResponseNeverReceived: [<twisted.python.failure.Failure twisted.internet.error.ConnectionDone: Connection was closed cleanly.>]>
+2020-03-21 18:52:36 [adstxt] ERROR: <twisted.python.failure.Failure twisted.web._newclient.ResponseNeverReceived: [<twisted.python.failure.Failure twisted.internet.error.ConnectionDone: Connection was closed cleanly.>]>
+2020-03-21 18:52:36 [adstxt] ERROR: <twisted.python.failure.Failure scrapy.spidermiddlewares.httperror.HttpError: Ignoring non-200 response>
+2020-03-21 18:52:48 [adstxt] ERROR: <twisted.python.failure.Failure scrapy.spidermiddlewares.httperror.HttpError: Ignoring non-200 response>
+2020-03-21 18:53:03 [adstxt] ERROR: <twisted.python.failure.Failure scrapy.spidermiddlewares.httperror.HttpError: Ignoring non-200 response>
+2020-03-21 18:53:27 [adstxt] ERROR: <twisted.python.failure.Failure twisted.web._newclient.ResponseNeverReceived: [<twisted.python.failure.Failure twisted.internet.error.ConnectionDone: Connection was closed cleanly.>]>
+2020-03-21 18:53:41 [adstxt] ERROR: <twisted.python.failure.Failure scrapy.spidermiddlewares.httperror.HttpError: Ignoring non-200 response>
+2020-03-21 18:53:51 [adstxt] ERROR: <twisted.python.failure.Failure twisted.web._newclient.ResponseNeverReceived: [<twisted.python.failure.Failure twisted.internet.error.ConnectionDone: Connection was closed cleanly.>]>
+2020-03-21 18:54:09 [adstxt] ERROR: <twisted.python.failure.Failure scrapy.spidermiddlewares.httperror.HttpError: Ignoring non-200 response>
+2020-03-21 18:55:18 [adstxt] ERROR: <twisted.python.failure.Failure twisted.internet.error.TimeoutError: User timeout caused connection failure: Getting http://www.zakruta.cz/ads.txt took longer than 60.0 seconds..>
+
+
