@@ -3,10 +3,10 @@ ads.txt crawler for transparency of inventory for publishers and advertisers.
 [Know more](https://github.com/kaustubhd93/adstxt-crawler/wiki/Ads.txt-concepts)  
 
 # Installation for Ubuntu/Debian
-
+> Please note this code only works on Python3
 - `sudo apt-get install git`
 - `git clone https://github.com/kaustubhd93/adstxt-crawler.git`
-- `sudo apt-get install python3-pip python3-dev build-essential`
+- `sudo apt install python3-venv python3.5-dev build-essential`
 - `python3.5 -v -m venv /path/to/your/virtualenv`
 - `source /path/to/your/virtualenv/bin/activate`
 - `cd adstxt-crawler`
