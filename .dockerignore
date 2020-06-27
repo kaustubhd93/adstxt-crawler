@@ -1,0 +1,6 @@
+*.csv
+*.log
+.git
+.idea
+docs
+archives
