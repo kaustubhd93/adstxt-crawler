@@ -7,19 +7,23 @@ ads.txt is an IAB-approved text file that aims to prevent unauthorized inventory
 - `sudo apt-get install git`
 - `git clone https://github.com/kaustubhd93/adstxt-crawler.git`
 - `sudo apt-get install python-pip python-dev build-essential`
-- `pip install virtualenv`
-- `virtualenv --verbose /path/to/your/virtualenv`
+- `sudo pip install virtualenv`
+- `virtualenv /path/to/your/virtualenv`
 - `source /path/to/your/virtualenv/bin/activate`
 - `cd adstxt-crawler`
 - `pip install -r requirements.txt`
 
-# Installation for CentOs/Redhat/Fedora
+# Installation for CentOs/Fedora
 
+- `sudo yum update` (if os is newly installed.)
+- `sudo yum install epel-release`
 - `sudo yum install git`
 - `git clone https://github.com/kaustubhd93/adstxt-crawler.git`
 - `sudo yum install gcc* python-devel python-pip`
-- `pip install virtualenv`
-- `virtualenv --verbose /path/to/your/virtualenv`
+- `sudo pip install -U pip`
+- `sudo pip install virtualenv`
+- `virtualenv /path/to/your/virtualenv`
+    - Run this if virtualenv threw an import error `sudo pip install -U zipp configparser`. Ignore this if virtualenv succeeded.
 - `source /path/to/your/virtualenv/bin/activate`
 - `cd adstxt-crawler`
 - `pip install -r requirements.txt`
