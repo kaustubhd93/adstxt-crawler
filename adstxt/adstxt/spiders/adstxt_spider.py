@@ -1,7 +1,6 @@
 import sys
 import scrapy
 
-from scrapy import signals
 from multiprocessing import Manager
 from parser.parsers import adstxtcrawler
 
