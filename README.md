@@ -1,8 +1,8 @@
-# adstxt-crawler
+## adstxt-crawler
 ads.txt is an IAB-approved text file that aims to prevent unauthorized inventory sales. Publishers drop a text file on their web servers that lists all of the companies that are authorized to sell the publisher's inventory. Similarly, programmatic platforms also integrate ads.txt files to confirm which publishers’ inventory they are authorized to sell. This allows buyers to check the validity of the inventory they purchase.
 [Tell me more about this](https://github.com/kaustubhd93/adstxt-crawler/wiki/Ads.txt-concepts)  
 
-# Installation for Ubuntu/Debian
+## Installation steps for Ubuntu/Debian
 
 - `sudo apt-get install git`
 - `git clone https://github.com/kaustubhd93/adstxt-crawler.git`
@@ -13,7 +13,7 @@ ads.txt is an IAB-approved text file that aims to prevent unauthorized inventory
 - `cd adstxt-crawler`
 - `pip install -r requirements.txt`
 
-# Installation for CentOs/Fedora
+## Installation steps for CentOs/Fedora
 
 - `sudo yum update` (if os is newly installed.)
 - `sudo yum install epel-release`
@@ -29,23 +29,23 @@ ads.txt is an IAB-approved text file that aims to prevent unauthorized inventory
 - `pip install -r requirements.txt`
 
 
-# Usage
+## Usage
 NOTE: List of domains should be written separately each on a new line.  
 ```
 domain1.xyz  
 domain2.xyz  
 www.domain3.xyz  
 ```
-## Crawl ads.txt by running below command
+### Crawl ads.txt by running below command
 
 - `./crawl.sh /path/to/listofdomainfile`
 
-### CSV Download path : adstxt-crawler/adstxt/csv
+#### CSV Download path : adstxt-crawler/adstxt/csv
 
-# Running Docker already ? Then, no need to setup all those things mentioned above.
+## Running Docker already ? Then, no need to setup all those things mentioned above.
 > If you are not running docker and want to use it. Check this installation guide for docker : https://docs.docker.com/get-docker/
 
-## Please follow these steps in the exact order
+### Please follow these steps in the exact order
 
 - `docker pull kaustubhdesai/adstxtcrawler:0.1`
 - `docker volume create adstxtcrawler`
