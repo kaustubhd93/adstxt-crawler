@@ -24,7 +24,7 @@ pytz==2019.1
 queuelib==1.5.0
 redis==3.2.1
 rpyc==4.0.2
-Scrapy==1.6.0
+Scrapy==2.6.1
 service-identity==18.1.0
 six==1.12.0
 Twisted==19.2.0
